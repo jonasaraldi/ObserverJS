@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Demo</title>
+</head>
+<body>
+
+	<div id="output"></div>
+
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="Observable.js"></script>
+	<script>
+
+		var demo = {
+			update: function(data) {
+				var output = $('#output');
+				output.append(data.message+'<br/>');
+			}
+		};
+
+		var pub = {
+			hello: function() {
+				console.log('Hello!');
+			}
+		};
+
+		Observable(pub);
+		pub.subscribe(demo);
+		
+		setInterval(function(){
+			pub.notify({
+				message: 'Hello!'
+			});
+		}, 1000);
+		
+
+	</script>
+</body>
+</html>
